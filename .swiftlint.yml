@@ -1,0 +1,116 @@
+only_rules:
+  - closure_end_indentation
+  - closure_spacing
+  - colon
+  - comma
+  - comment_spacing
+  - compiler_protocol_init
+  - control_statement
+  - cyclomatic_complexity
+  - duplicate_enum_cases
+  - duplicate_imports
+  - empty_parameters
+  - explicit_acl
+  - fallthrough
+  - fatal_error_message
+  - file_length
+  - force_unwrapping
+  - function_body_length
+  - identifier_name
+  - implicit_getter
+  - implicit_return
+  - implicitly_unwrapped_optional
+  - legacy_cggeometry_functions
+  - legacy_constant
+  - legacy_constructor
+  - legacy_hashing
+  - legacy_nsgeometry_functions
+  - line_length
+  - literal_expression_end_indentation
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - no_extension_access_modifier
+  - no_space_in_method_call
+  - opening_brace
+  - operator_usage_whitespace
+  - redundant_type_annotation
+  - redundant_void_return
+  - return_arrow_whitespace
+  - statement_position
+  - syntactic_sugar
+  - todo
+  - trailing_closure
+  - trailing_comma
+  - trailing_newline
+  - trailing_semicolon
+  - trailing_whitespace
+  - unneeded_parentheses_in_closure_argument
+  - unused_import
+  - unused_optional_binding
+  - unused_setter_value
+  - vertical_whitespace
+  - vertical_whitespace_between_cases
+  - vertical_whitespace_closing_braces
+  - void_return
+#  - explicit_self やってもいいかな
+  - custom_rules
+
+excluded:
+  - Carthage
+  - Pods
+  - .SPM
+  - ./*/Tests
+
+colon:
+  flexible_right_spacing: true
+  apply_to_dictionaries: false
+
+cyclomatic_complexity:
+  warning: 5
+  error: 10
+  ignores_case_statements: true
+
+file_length:
+  warning: 200
+  error: 300
+indentation: 4
+
+function_body_length:
+  warning: 20
+  error: 50
+
+
+trailing_comma:
+  mandatory_comma: true
+
+line_length:
+  warning: 160
+  error: 320
+  ignores_comments: true
+
+identifier_name:
+  min_length:
+    warning: 1
+  max_length:
+    warning: 20
+  allowed_symbols:
+    - _
+  excluded:
+    - x
+    - y
+    - _
+  validates_start_with_lowercase: true
+
+custom_rules:
+  no_objcMembers:
+    name: "@objcMembers"
+    regex: "@objcMembers"
+    message: "Explicitly use @objc on each member you want to expose to Objective-C"
+    severity: error
+  no_direct_standard_out_logs:
+    name: "Writing log messages directly to standard out is disallowed"
+    regex: "(\\bprint|\\bdebugPrint|\\bdump|Swift\\.print|Swift\\.debugPrint|Swift\\.dump)\\s*\\("
+    match_kinds:
+    - identifier
+    message: "Don't commit `print(…)`, `debugPrint(…)`, or `dump(…)` as they write to standard out in release. Either log to a dedicated logging system or silence this warning in debug-only scenarios explicitly using `// swiftlint:disable:next no_direct_standard_out_logs`"
+    severity: warning
